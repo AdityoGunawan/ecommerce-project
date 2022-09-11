@@ -4,7 +4,7 @@ import "gorm.io/gorm"
 
 type Cart struct {
 	gorm.Model
-	ProductID []Product
-	UserID    User
-	Order     Order
+	ProductID uint
+	UserID    uint
+	Orders    []Order
 }

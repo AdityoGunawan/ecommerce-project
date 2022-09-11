@@ -10,6 +10,8 @@ type User struct {
 	Address  string
 	Foto     string
 	Products []Product
+	Carts    []Cart
+	Orders   []Order
 }
 
 // `gorm:"constraint:OnUpdate:CASCADE,OnDelete:SET NULL;"`
