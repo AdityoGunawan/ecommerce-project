@@ -20,8 +20,8 @@ func (Service *Service) AddProductI(core entities.CoreProduct) (int, error) {
 	return row, err
 }
 
-func (service *Service) GetAll() ([]entities.CoreProduct, error) {
-	all, err := service.do.SelectAll()
+func (service *Service) GetAll(page int) ([]entities.CoreProduct, error) {
+	all, err := service.do.SelectAll(page)
 	return all, err
 }
 

@@ -19,28 +19,8 @@ func (service *Services) MyProfile(id int) (entities.CoreUser, error) {
 	return core, err
 }
 
-func (service *Services) UpdateImage(alamat string, id int) (string, error) {
-	msg, err := service.do.UpdateImage(alamat, id)
-	return msg, err
-}
-
-func (service *Services) UpdateUserName(newname entities.CoreUser, id int) (string, error) {
-	msg, err := service.do.UpdateUserName(newname, id)
-	return msg, err
-}
-
-func (service *Services) UpdatePassword(NewPassword entities.CoreUser, id int) (string, error) {
-	msg, err := service.do.UpdatePassword(NewPassword, id)
-	return msg, err
-}
-
-func (service *Services) UpdateEmail(NewPassword entities.CoreUser, id int) (string, error) {
-	msg, err := service.do.UpdateEmail(NewPassword, id)
-	return msg, err
-}
-
-func (service *Services) UpdateName(NewPassword entities.CoreUser, id int) (string, error) {
-	msg, err := service.do.UpdateName(NewPassword, id)
+func (service *Services) Update(data entities.CoreUser, id int) (string, error) {
+	msg, err := service.do.Update(data, id)
 	return msg, err
 }
 

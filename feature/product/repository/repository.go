@@ -27,9 +27,11 @@ func (storage *Storage) InsertI(core entities.CoreProduct) (int, error) {
 	return int(tx.RowsAffected), nil
 }
 
-func (storage *Storage) SelectAll() ([]entities.CoreProduct, error) {
+func (storage *Storage) SelectAll(page int) ([]entities.CoreProduct, error) {
 	var data []models.Product
-	tx := storage.query.Find(&data)
+	var count = 4 * (page - 1)
+
+	tx := storage.query.Limit(4).Offset(count).Find(&data)
 	if tx.Error != nil {
 		return []entities.CoreProduct{}, tx.Error
 	}
