@@ -8,6 +8,6 @@ type Cart struct {
 	UserID     uint
 	TotalPrice int
 	Product    Product
-	Quantity   int
+	Qty        int
 	Order      Order
 }

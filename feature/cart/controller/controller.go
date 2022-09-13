@@ -2,7 +2,6 @@ package controller
 
 import (
 	"ecommerce-project/feature/cart/repository"
-	"ecommerce-project/feature/cart/services"
 	"ecommerce-project/middlewares"
 	"ecommerce-project/models"
 	"ecommerce-project/response"
@@ -19,7 +18,7 @@ func CreateCartControllers(c echo.Context) error {
 	Cart := models.Cart{}
 	c.Bind(&Cart)
 	v := validator.New()
-	e := v.Var(Cart.Quantity, "required,gt=0")
+	e := v.Var(Cart.Qty, "required,gt=0")
 	if e == nil {
 		logged := middlewares.ExtractToken(c)
 
@@ -27,12 +26,12 @@ func CreateCartControllers(c echo.Context) error {
 		harga_product, _ := repository.GetHargaProduct(int(Cart.ProductID))
 
 		Cart.UserID = uint(logged)
-		Cart.TotalPrice = Cart.Quantity * harga_product
+		Cart.TotalPrice = Cart.Qty * harga_product
 
 		if uint(logged) == id_user_cart {
 			return c.JSON(http.StatusBadRequest, response.AccessForbiddenResponse())
 		}
-		_, e = services.CreateCart(&Cart)
+		_, e = repository.CreateCart(&Cart)
 	}
 	if e != nil {
 		return c.JSON(http.StatusBadRequest, response.BadRequestResponse())
@@ -66,6 +65,7 @@ func DeleteCartControllers(c echo.Context) error {
 	return c.JSON(http.StatusOK, response.SuccessResponseNonData())
 }
 
+// update cart
 func UpdateCartControllers(c echo.Context) error {
 	id, err := strconv.Atoi(c.Param("id"))
 	if err != nil {
@@ -75,7 +75,7 @@ func UpdateCartControllers(c echo.Context) error {
 	cart := models.Cart{}
 	c.Bind(&cart)
 	v := validator.New()
-	e := v.Var(cart.Quantity, "required,gt=0")
+	e := v.Var(cart.Qty, "required,gt=0")
 	if e == nil {
 		return c.JSON(http.StatusBadRequest, response.BadRequestResponse())
 	}
@@ -91,7 +91,7 @@ func UpdateCartControllers(c echo.Context) error {
 
 	// mengupdate total harga
 	harga_product, _ := repository.GetHargaProduct(int(id_product))
-	cart.TotalPrice = cart.Quantity * harga_product
+	cart.TotalPrice = cart.Qty * harga_product
 
 	// untuk mengupdate
 	repository.UpdateCart(id, &cart)

@@ -61,6 +61,20 @@ func GetIDUserCart(id int) (uint, uint, error) {
 	return cart.UserID, cart.ProductID, nil
 }
 
+func CreateCart(Cart *models.Cart) (interface{}, error) {
+
+	if err := config.DB.Create(&Cart).Error; err != nil {
+		return nil, err
+	}
+
+	return Cart.UserID, nil
+}
+
+// function database untuk memperbarui data cart by id
+func UpdateCart(id int, Cart *models.Cart) {
+	config.DB.Where("id = ?", id).Updates(&Cart)
+}
+
 // function database untuk menghapus cart by id
 func DeleteCart(id int) (interface{}, error) {
 	var cart models.Cart
@@ -70,9 +84,4 @@ func DeleteCart(id int) (interface{}, error) {
 		return nil, err
 	}
 	return cart.UserID, nil
-}
-
-// function database untuk memperbarui data cart by id
-func UpdateCart(id int, Cart *models.Cart) {
-	config.DB.Where("id = ?", id).Updates(&Cart)
 }
