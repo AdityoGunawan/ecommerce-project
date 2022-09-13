@@ -2,46 +2,21 @@ package controller
 
 import "ecommerce-project/feature/user/entities"
 
-type FotoUpdate struct {
-	Foto string `json:"foto" form:"foto"`
-}
-
-type NameUpdate struct {
-	Name string `json:"name" form:"name"`
-}
-
-type UserNameUpdate struct {
+type Request struct {
+	Name     string `json:"name" form:"name"`
 	Username string `json:"username" form:"username"`
-}
-
-type PasswordUpdate struct {
+	Email    string `json:"email" form:"email"`
 	Password string `json:"password" form:"password"`
+	Foto     string `json:"foto" form:"foto"`
 }
 
-type EmailUpdate struct {
-	Email string `json:"email" form:"email"`
-}
+func (ex *Request) RequestToCore() entities.CoreUser {
+	var core entities.CoreUser
+	core.Name = ex.Name
+	core.Username = ex.Username
+	core.Email = ex.Email
+	core.Password = ex.Password
+	core.Foto = ex.Foto
 
-func UserNameToCore(data UserNameUpdate) entities.CoreUser {
-	return entities.CoreUser{
-		Username: data.Username,
-	}
-}
-
-func PasswordToCore(data PasswordUpdate) entities.CoreUser {
-	return entities.CoreUser{
-		Password: data.Password,
-	}
-}
-
-func EmailToCore(data EmailUpdate) entities.CoreUser {
-	return entities.CoreUser{
-		Email: data.Email,
-	}
-}
-
-func NameToCore(data NameUpdate) entities.CoreUser {
-	return entities.CoreUser{
-		Name: data.Name,
-	}
+	return core
 }

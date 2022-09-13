@@ -56,3 +56,13 @@ func ProductToCoreList(data []Product) []product.CoreProduct {
 
 	return corelist
 }
+
+func CoreUserToModel(data entities.CoreUser) User {
+	return User{
+		Name:     data.Name,
+		Username: data.Username,
+		Email:    data.Email,
+		Password: data.Password,
+		Foto:     data.Foto,
+	}
+}
