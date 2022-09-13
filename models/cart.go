@@ -6,5 +6,7 @@ type Cart struct {
 	gorm.Model
 	ProductID uint
 	UserID    uint
-	Orders    []Order
+	Product   Product
+	Quantity  int
+	Order     Order
 }

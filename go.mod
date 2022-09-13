@@ -1,4 +1,4 @@
-module ecommerce-project
+module ecommerce-project 
 
 go 1.18
 
