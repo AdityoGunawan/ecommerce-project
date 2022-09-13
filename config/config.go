@@ -1,6 +1,10 @@
 package config
 
-import "os"
+import (
+	"os"
+
+	"gorm.io/gorm"
+)
 
 type DataBase struct {
 	DB_SERVERPORT string
@@ -12,6 +16,7 @@ type DataBase struct {
 }
 
 var dbAddress *DataBase
+var DB *gorm.DB
 
 func GetDataBase() *DataBase {
 	if dbAddress == nil {
