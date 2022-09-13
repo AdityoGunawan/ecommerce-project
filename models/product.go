@@ -10,6 +10,7 @@ type Product struct {
 	Foto        string
 	UserID      uint
 	CategoryID  uint
+	Quantity    uint
 	Carts       []Cart
 	Orders      []Order
 }

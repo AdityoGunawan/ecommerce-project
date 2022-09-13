@@ -2,6 +2,7 @@ package main
 
 import (
 	"ecommerce-project/config"
+	"ecommerce-project/factory"
 	"ecommerce-project/migration"
 	"ecommerce-project/utils/database"
 	"fmt"
@@ -17,7 +18,7 @@ func main() {
 	migration.InitialMigration(db)
 	e := echo.New()
 
-	// factory.InitFact(e, db)
+	factory.InitFact(e, db)
 
 	log.Fatal(e.Start(fmt.Sprintf(":%s", config.DB_SERVERPORT)))
 

@@ -7,8 +7,8 @@ type User struct {
 	Name     string
 	Email    string
 	Password string
-	Address  string
 	Foto     string
+	Username string `gorm:"unique"`
 	Products []Product
 	Carts    []Cart
 	Orders   []Order

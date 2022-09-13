@@ -7,8 +7,8 @@ type CoreUser struct {
 	Name       string
 	Email      string
 	Password   string
-	Address    string
 	Foto       string
+	Username   string
 	Products   []CoreProduct
 	Created_at time.Time
 	Update_at  time.Time

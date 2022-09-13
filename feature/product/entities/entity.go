@@ -8,8 +8,9 @@ type CoreProduct struct {
 	Price       int
 	Description string
 	Foto        string
-	UserID      CoreUser
-	CategoryID  CoreCategory
+	UserID      uint
+	CategoryID  uint
+	Quantity    uint
 	Created_at  time.Time
 	Update_at   time.Time
 }

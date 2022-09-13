@@ -21,8 +21,8 @@ func JWTMiddleware() echo.MiddlewareFunc {
 func CreateToken(userId int) (string, error) {
 	claims := jwt.MapClaims{}
 	claims["authorized"] = true
-	claims["userId"] = userId                             //menyimpan userid ke dalam token
-	claims["exp"] = time.Now().Add(time.Hour * 24).Unix() //token akan expired setelah 1 jam
+	claims["userId"] = userId
+	claims["exp"] = time.Now().Add(time.Hour * 24).Unix()
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
 	// fmt.Println("token:", token)
 	return token.SignedString([]byte(config.SECRET))
